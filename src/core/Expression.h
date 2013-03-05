@@ -11,8 +11,8 @@
 namespace core{
     template<class T>
     class Expression{
-        public:
-            T evaluate() const = 0;
+    public:
+        T evaluate() const = 0;
     };
 }
 
