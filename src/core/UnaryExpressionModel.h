@@ -12,7 +12,7 @@
 
 namespace core{
     template<class T>
-    class UnaryExpressionModel{
+    class UnaryExpressionModel : public Expression, public UnaryExpression{
     private:
         Expression<T>* _operand;
         UnaryExpression<T>* _op;
