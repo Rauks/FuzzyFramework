@@ -42,12 +42,14 @@ namespace core{
     T UnaryExpressionModel<T>::evaluate() const{
         if(_operand != NULL)
             return evaluate(_operand);
+        throw NullArgumentException("Expression : Operand");
     }
     
     template<class T>
     T UnaryExpressionModel<T>::evaluate(Expression<T>* operand) const{
         if(_op != NULL)
             return _op->evaluate(operand);
+        throw NullArgumentException("UnaryExpression : Operator");
     }
 }
 
