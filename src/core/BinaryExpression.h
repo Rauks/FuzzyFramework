@@ -12,7 +12,7 @@ namespace core{
     template<class T>
     class BinaryExpression{
     public:
-        T evaluate(Expression o) const = 0;
+        T evaluate(Expression<T>* l, Expression<T>* r) const = 0;
     };
 }
 
