@@ -16,15 +16,15 @@ namespace core{
     private:
         T _value;
     public:
-        ValueModel(T value);
+        ValueModel(const T& value);
         ValueModel(const ValueModel<T>& o);
         virtual ~ValueModel();
-        void setValue(T value);
+        void setValue(const T& value);
         virtual T evaluate() const;
     };
     
     template<class T>
-    ValueModel<T>::ValueModel(T value)
+    ValueModel<T>::ValueModel(const T& value)
     :_value(value){
     }
 
@@ -38,7 +38,7 @@ namespace core{
     }
     
     template<class T>
-    void ValueModel<T>::setValue(T value){
+    void ValueModel<T>::setValue(const T& value){
         _value = value;
     }
     
