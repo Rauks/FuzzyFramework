@@ -18,7 +18,7 @@
 
 namespace core{
     template<class T>
-    class BinaryExpressionModel : public Expression, public BinaryExpression{
+    class BinaryExpressionModel : public Expression<T>, public BinaryExpression<T>{
     private:
         Expression<T>* _left;
         Expression<T>* _right;

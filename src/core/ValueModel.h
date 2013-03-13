@@ -14,7 +14,7 @@
 
 namespace core{
     template<class T>
-    class ValueModel : public Expression{
+    class ValueModel : public Expression<T>{
     private:
         T _value;
     public:

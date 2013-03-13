@@ -18,10 +18,10 @@ using namespace core;
  * 
  */
 int main(int argc, char** argv) {
-    ValueModel vm1(1);
-    ValueModel vm2(0);
-    BinaryExpressionModel bem(&vm1, &vm2);
-    UnaryExpressionModel uem(&bem);
+    ValueModel<int> vm1(1);
+    ValueModel<int> vm2(0);
+    BinaryExpressionModel<int> bem(&vm1, &vm2, &op1);
+    UnaryExpressionModel<int> uem(&bem, &op2);
     cout << uem.evaluate();
     
     /*
