@@ -14,6 +14,34 @@
         <itemPath>src/core/ValueModel.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="fuzzy" projectFiles="true">
+        <logicalFolder name="f4" displayName="Agg" projectFiles="true">
+          <itemPath>src/fuzzy/Agg.h</itemPath>
+          <itemPath>src/fuzzy/AggMax.h</itemPath>
+          <itemPath>src/fuzzy/AggPlus.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f1" displayName="And" projectFiles="true">
+          <itemPath>src/fuzzy/And.h</itemPath>
+          <itemPath>src/fuzzy/AndMin.h</itemPath>
+          <itemPath>src/fuzzy/AndMult.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f6" displayName="Is" projectFiles="true">
+          <itemPath>src/fuzzy/Is.h</itemPath>
+          <itemPath>src/fuzzy/isTriangle.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f5" displayName="Not" projectFiles="true">
+          <itemPath>src/fuzzy/NorMinus1.h</itemPath>
+          <itemPath>src/fuzzy/Not.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f2" displayName="Or" projectFiles="true">
+          <itemPath>src/fuzzy/Or.h</itemPath>
+          <itemPath>src/fuzzy/OrMax.h</itemPath>
+          <itemPath>src/fuzzy/OrPlus.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f3" displayName="Then" projectFiles="true">
+          <itemPath>src/fuzzy/Then.h</itemPath>
+          <itemPath>src/fuzzy/ThenMin.h</itemPath>
+          <itemPath>src/fuzzy/ThenMult.h</itemPath>
+        </logicalFolder>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
