@@ -8,6 +8,10 @@
 #ifndef UNARYEXPRESSIONMODEL_H
 #define	UNARYEXPRESSIONMODEL_H
 
+#include "Expression.h"
+#include "UnaryExpression.h"
+#include "NullArgumentException.h"
+
 #include <iostream>
 
 namespace core{

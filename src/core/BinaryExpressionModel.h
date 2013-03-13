@@ -8,6 +8,10 @@
 #ifndef BINARYEXPRESSIONMODEL_H
 #define	BINARYEXPRESSIONMODEL_H
 
+#include "Expression.h"
+#include "BinaryExpression.h"
+#include "NullArgumentException.h"
+
 #include <iostream>
 
 #include "BinaryExpression.h"
@@ -50,7 +54,7 @@ namespace core{
     
     template<class T>
     T BinaryExpressionModel<T>::evaluate(Expression<T>* left, Expression<T>* right) const{
-        if(operator != NULL)
+        if(_op != NULL)
             return _op.evaluate(left, right);
         throw NullArgumentException("BinaryExpression : Operator");
     }

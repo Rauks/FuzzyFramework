@@ -8,6 +8,8 @@
 #ifndef VALUEMODEL_H
 #define	VALUEMODEL_H
 
+#include "Expression.h"
+
 #include <iostream>
 
 namespace core{
