@@ -12,7 +12,7 @@
 
 namespace fuzzy{
     template<class T>
-    class OrMax : public Or{
+    class OrPlus : public Or{
     public:
         virtual T evaluate(core::Expression<T>* left, core::Expression<T>* right);
     };
