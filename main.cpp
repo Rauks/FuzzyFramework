@@ -7,12 +7,24 @@
 
 #include <cstdlib>
 
+#include "src/core/ValueModel.h"
+#include "src/core/BinaryExpressionModel.h"
+#include "src/core/UnaryExpressionModel.h"
+
 using namespace std;
+using namespace core;
 
 /*
  * 
  */
 int main(int argc, char** argv) {
+    ValueModel vm1(1);
+    ValueModel vm2(0);
+    BinaryExpressionModel bem(&vm1, &vm2);
+    UnaryExpressionModel uem(&bem);
+    cout << uem.evaluate();
+    
+    /*
     //operators
     NotMinus1 opNot;
     AndMin opAnd;
@@ -63,6 +75,8 @@ int main(int argc, char** argv) {
         service.SetValue(s);
         cout << "tips -> " << system->evaluate() << endl;
     }
+    */
+    
     return 0;
 }
 
