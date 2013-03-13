@@ -12,7 +12,8 @@ namespace core{
     :_msg(msg){
     }
 
-    NullArgumentException::NullArgumentException(const NullArgumentException& orig) {
+    NullArgumentException::NullArgumentException(const NullArgumentException& o)
+    :_msg(o._msg){
     }
 
     NullArgumentException::~NullArgumentException() throw(){
