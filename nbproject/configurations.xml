@@ -26,7 +26,7 @@
         </logicalFolder>
         <logicalFolder name="f6" displayName="Is" projectFiles="true">
           <itemPath>src/fuzzy/Is.h</itemPath>
-          <itemPath>src/fuzzy/isTriangle.h</itemPath>
+          <itemPath>src/fuzzy/IsTriangle.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f5" displayName="Not" projectFiles="true">
           <itemPath>src/fuzzy/Not.h</itemPath>
