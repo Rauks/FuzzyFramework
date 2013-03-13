@@ -29,8 +29,8 @@
           <itemPath>src/fuzzy/isTriangle.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f5" displayName="Not" projectFiles="true">
-          <itemPath>src/fuzzy/NorMinus1.h</itemPath>
           <itemPath>src/fuzzy/Not.h</itemPath>
+          <itemPath>src/fuzzy/NotMinus1.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f2" displayName="Or" projectFiles="true">
           <itemPath>src/fuzzy/Or.h</itemPath>
