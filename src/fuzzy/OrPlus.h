@@ -14,11 +14,11 @@ namespace fuzzy{
     template<class T>
     class OrPlus : public Or{
     public:
-        virtual T evaluate(core::Expression<T>* left, core::Expression<T>* right);
+        virtual T evaluate(core::Expression<T>* left, core::Expression<T>* right) const;
     };
     
     template<class T>
-    T evaluate(core::Expression<T>* left, core::Expression<T>* right){
+    T evaluate(core::Expression<T>* left, core::Expression<T>* right) const{
         T lt = left->evaluate();
         T rt = right->evaluate();
         T sum = lt + rt;
