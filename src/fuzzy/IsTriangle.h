@@ -15,9 +15,9 @@ namespace fuzzy{
     template<class T>
     class IsTriangle : public Is<T>{
     private:
-        T& _min;
-        T& _mid;
-        T& _max;
+        T _min;
+        T _mid;
+        T _max;
     public:
         IsTriangle(const T& min, const T& mid, const T& max);
         IsTriangle(const IsTriangle<T>& o);
@@ -45,7 +45,7 @@ namespace fuzzy{
         if(val > _min && val < _mid){
              return (val - _min) / (_mid - _min);
         }
-        if(val > _mid && val < _max){
+        if(val >= _mid && val < _max){
             return (val - _max) / (_mid - _max);
         }
         return 0;

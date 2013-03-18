@@ -15,10 +15,10 @@ namespace fuzzy{
     template<class T>
     class IsTrapese : public Is<T>{
     private:
-        T& _min;
-        T& _midMin;
-        T& _midMax;
-        T& _max;
+        T _min;
+        T _midMin;
+        T _midMax;
+        T _max;
     public:
         IsTrapese(const T& min, const T& midMin, const T& midMax, const T& max);
         IsTrapese(const IsTrapese<T>& o);
@@ -46,7 +46,7 @@ namespace fuzzy{
         if(val > _min && val < _midMin){
              return (val - _min) / (_midMin - _min);
         }
-        if(val > _midMin && val < _midMax){
+        if(val >= _midMin && val <= _midMax){
              return 1;
         }
         if(val > _midMax && val < _max){
