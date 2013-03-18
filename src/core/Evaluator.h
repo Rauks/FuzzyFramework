@@ -20,7 +20,7 @@ namespace core{
     public:
         typedef std::pair<std::vector<T>, std::vector<T> > Shape;
         static Evaluator<T>::Shape evaluate(const T& min, const T& max, const T& step, const Expression<T>& var, const Expression<T>& exp);
-        static std::ostream& printShape(const Evaluator<T>::Shape s, std::ostream&);
+        static std::ostream& printShape(const Evaluator<T>::Shape s, std::ostream& os);
     };
     
     template<class T>
@@ -34,7 +34,19 @@ namespace core{
         return s;
     }
     
-    
+    template<class T>
+    static std::ostream& Evaluator<T>::printShape(const Evaluator<T>::Shape s, std::ostream& os){
+        os << "Shape : " << std::endl;
+        os << "X : " << std::endl;
+        for(std::vector<T>::const_iterator it = s.first.begin(); it != s.first.end(); it++){
+            os << *it << " ";
+        }
+        os << "Y : " << std::endl;
+        for(std::vector<T>::const_iterator it = s.second.begin(); it != s.second.end(); it++){
+            os << *it << " ";
+        }
+        return os;
+    }
 }
 
 #endif	/* EVALUATOR_H */
