@@ -42,10 +42,10 @@ namespace fuzzy{
     T IsTriangle<T>::evaluate(core::Expression<T>* operand) const{
         T val = operand->evaluate();
         if(val > _min && val < _mid){
-            //TODO
+             return (val - _min) / (_mid - _min);
         }
         if(val > _mid && val < _max){
-            //TODO
+            return (val - _max) / (_mid - _max);
         }
         return 0;
     }
