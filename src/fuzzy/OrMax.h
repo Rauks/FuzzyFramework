@@ -12,7 +12,7 @@
 
 namespace fuzzy{
     template<class T>
-    class OrMax : public Or{
+    class OrMax : public Or<T>{
     public:
         OrMax();
         OrMax(const OrMax<T>& o);

@@ -12,7 +12,7 @@
 
 namespace fuzzy{
     template<class T>
-    class ThenMin : public Then{
+    class ThenMin : public Then<T>{
     public:
         ThenMin();
         ThenMin(const ThenMin<T>& o);

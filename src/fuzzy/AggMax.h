@@ -12,7 +12,7 @@
 
 namespace fuzzy{
     template<class T>
-    class AggMax : public Agg{
+    class AggMax : public Agg<T>{
     public:
         AggMax();
         AggMax(const AggMax<T>& o);

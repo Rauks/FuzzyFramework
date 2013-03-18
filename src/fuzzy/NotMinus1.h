@@ -12,7 +12,7 @@
 
 namespace fuzzy{
     template<class T>
-    class NotMinus1 : public Not{
+    class NotMinus1 : public Not<T>{
     public:
         NotMinus1();
         NotMinus1(const NotMinus1<T>& o);

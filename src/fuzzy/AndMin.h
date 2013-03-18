@@ -12,7 +12,7 @@
 
 namespace fuzzy{
     template<class T>
-    class AndMin : public And{
+    class AndMin : public And<T>{
     public:
         AndMin();
         AndMin(const AndMin<T>& o);

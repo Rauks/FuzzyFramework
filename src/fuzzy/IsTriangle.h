@@ -12,7 +12,7 @@
 
 namespace fuzzy{
     template<class T>
-    class IsTriangle : public Is{
+    class IsTriangle : public Is<T>{
     private:
         T* _min;
         T* _mid;

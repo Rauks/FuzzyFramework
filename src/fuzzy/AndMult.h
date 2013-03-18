@@ -12,7 +12,7 @@
 
 namespace fuzzy{
     template<class T>
-    class AndMult : public And{
+    class AndMult : public And<T>{
     public:
         AndMult();
         AndMult(const AndMult<T>& o);

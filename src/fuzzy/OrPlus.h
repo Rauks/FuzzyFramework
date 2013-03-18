@@ -12,7 +12,7 @@
 
 namespace fuzzy{
     template<class T>
-    class OrPlus : public Or{
+    class OrPlus : public Or<T>{
     public:
         OrPlus();
         OrPlus(const OrPlus<T>& o);

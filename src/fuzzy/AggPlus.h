@@ -12,7 +12,7 @@
 
 namespace fuzzy{
     template<class T>
-    class AggPlus : public Agg{
+    class AggPlus : public Agg<T>{
     public:
         AggPlus();
         AggPlus(const AggPlus<T>& o);
