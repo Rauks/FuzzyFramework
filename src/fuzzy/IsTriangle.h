@@ -18,14 +18,14 @@ namespace fuzzy{
         T* _mid;
         T* _max;
     public:
-        IsTriangle();
+        IsTriangle(const T* min, const T* mid, const T* max);
         IsTriangle(const IsTriangle<T>& o);
         virtual ~IsTriangle();
         virtual T evaluate(core::Expression<T>* operand) const;
     };
     
     template<class T>
-    IsTriangle<T>::IsTriangle(T* min, T* mid, T* max)
+    IsTriangle<T>::IsTriangle(const T* min, const T* mid, const T* max)
     :_min(min), _mid(mid), _max(max){
     }
     

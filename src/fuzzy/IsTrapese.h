@@ -8,6 +8,8 @@
 #ifndef ISTRAPESE_H
 #define	ISTRAPESE_H
 
+#include "Is.h"
+
 namespace fuzzy{
     template<class T>
     class IsTrapese : public Is<T>{
@@ -17,14 +19,14 @@ namespace fuzzy{
         T* _midMax;
         T* _max;
     public:
-        IsTrapese();
+        IsTrapese(const T* min, const T* midMin, const T* midMax, const T* max);
         IsTrapese(const IsTrapese<T>& o);
         virtual ~IsTrapese();
         virtual T evaluate(core::Expression<T>* operand) const;
     };
     
     template<class T>
-    IsTrapese<T>::IsTrapese(T* min, T* midMin, T* midMax, T* max)
+    IsTrapese<T>::IsTrapese(const T* min, const T* midMin, const T* midMax, const T* max)
     :_min(min), _midMin(midMin), _midMax(midMax), _max(max){
     }
     
