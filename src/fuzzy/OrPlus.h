@@ -8,6 +8,7 @@
 #ifndef ORPLUS_H
 #define	ORPLUS_H
 
+#include "../core/Expression.h"
 #include "Or.h"
 
 namespace fuzzy{

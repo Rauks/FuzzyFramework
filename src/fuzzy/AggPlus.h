@@ -8,6 +8,7 @@
 #ifndef AGGPLUS_H
 #define	AGGPLUS_H
 
+#include "../core/Expression.h"
 #include "Agg.h"
 
 namespace fuzzy{

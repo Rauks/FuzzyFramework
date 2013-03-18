@@ -8,6 +8,7 @@
 #ifndef ANDMIN_H
 #define	ANDMIN_H
 
+#include "../core/Expression.h"
 #include "And.h"
 
 namespace fuzzy{
