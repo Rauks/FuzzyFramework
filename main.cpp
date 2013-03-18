@@ -13,6 +13,8 @@
 #include "src/fuzzy/AndMin.h"
 #include "src/fuzzy/NotMinus1.h"
 
+#include "src/core/Evaluator.h"
+
 using namespace std;
 using namespace core;
 using namespace fuzzy;
@@ -27,7 +29,9 @@ int main(int argc, char** argv) {
     NotMinus1<int> op2;
     BinaryExpressionModel<int> bem(&vm1, &vm2, &op1);
     UnaryExpressionModel<int> uem(&bem, &op2);
-    cout << uem.evaluate();
+    
+    Evaluator<int>::Shape s = Evaluator<int>::evaluate(0, 30, 1, vm1, uem);
+    Evaluator<int>::printShape(s, std::cout);
     
     /*
     //operators
