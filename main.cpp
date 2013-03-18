@@ -10,9 +10,12 @@
 #include "src/core/ValueModel.h"
 #include "src/core/BinaryExpressionModel.h"
 #include "src/core/UnaryExpressionModel.h"
+#include "src/fuzzy/AndMin.h"
+#include "src/fuzzy/NotMinus1.h"
 
 using namespace std;
 using namespace core;
+using namespace fuzzy;
 
 /*
  * 
@@ -20,6 +23,8 @@ using namespace core;
 int main(int argc, char** argv) {
     ValueModel<int> vm1(1);
     ValueModel<int> vm2(0);
+    AndMin<int> op1;
+    NotMinus1<int> op2;
     BinaryExpressionModel<int> bem(&vm1, &vm2, &op1);
     UnaryExpressionModel<int> uem(&bem, &op2);
     cout << uem.evaluate();
