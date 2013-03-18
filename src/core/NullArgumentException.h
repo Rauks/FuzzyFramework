@@ -12,13 +12,9 @@
 
 namespace core{
     class NullArgumentException : std::invalid_argument{
-    private:
-        std::string _msg;
     public:
-        NullArgumentException(std::string msg);
-        NullArgumentException(const NullArgumentException& orig);
+        NullArgumentException(const std::string& msg);
         virtual ~NullArgumentException() throw();
-        virtual const char * what() const throw();
     };
 }
 

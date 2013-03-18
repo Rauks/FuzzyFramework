@@ -8,18 +8,10 @@
 #include "NullArgumentException.h"
 
 namespace core{
-    NullArgumentException::NullArgumentException(std::string msg)
-    :_msg(msg){
-    }
-
-    NullArgumentException::NullArgumentException(const NullArgumentException& o)
-    :_msg(o._msg){
+    NullArgumentException::NullArgumentException(const std::string& msg)
+    :std::invalid_argument(msg){
     }
 
     NullArgumentException::~NullArgumentException() throw(){
-    }
-    
-    const char* NullArgumentException::what() const throw(){
-        return _msg.c_str();
     }
 }
