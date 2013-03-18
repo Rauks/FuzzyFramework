@@ -55,7 +55,7 @@ namespace core{
     template<class T>
     T BinaryExpressionModel<T>::evaluate(Expression<T>* left, Expression<T>* right) const{
         if(_op != NULL)
-            return _op.evaluate(left, right);
+            return _op->evaluate(left, right);
         throw NullArgumentException("BinaryExpression : Operator");
     }
 }
