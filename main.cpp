@@ -11,7 +11,7 @@
 #include "src/core/BinaryExpressionModel.h"
 #include "src/core/UnaryExpressionModel.h"
 #include "src/fuzzy/AndMin.h"
-#include "src/fuzzy/NotMinus1.h"
+#include "src/fuzzy/IsTriangle.h"
 
 #include "src/core/Evaluator.h"
 
@@ -23,15 +23,12 @@ using namespace fuzzy;
  * 
  */
 int main(int argc, char** argv) {
-    ValueModel<int> vm1(1);
-    ValueModel<int> vm2(0);
-    AndMin<int> op1;
-    NotMinus1<int> op2;
-    BinaryExpressionModel<int> bem(&vm1, &vm2, &op1);
-    UnaryExpressionModel<int> uem(&bem, &op2);
+    ValueModel<float> vm1(1);
+    IsTriangle<float> op2(5, 10, 15);
+    UnaryExpressionModel<float> uem(&vm1, &op2);
     
-    Evaluator<int>::Shape s = Evaluator<int>::evaluate(0, 30, 1, vm1, uem);
-    Evaluator<int>::printShape(s, std::cout);
+    Evaluator<float>::Shape s = Evaluator<float>::evaluate(0, 30, 1, vm1, uem);
+    Evaluator<float>::printShape(s, std::cout);
     
     /*
     //operators
