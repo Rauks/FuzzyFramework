@@ -9,6 +9,7 @@
 #define	EVALUATOR_H
 
 #include <vector>
+#include <iostream>
 
 #include "src/core/Expression.h"
 #include "src/core/ValueModel.h"
@@ -19,6 +20,7 @@ namespace core{
     public:
         typedef std::pair<std::vector<T>, std::vector<T> > Shape;
         static Evaluator<T>::Shape evaluate(const T& min, const T& max, const T& step, const Expression<T>& var, const Expression<T>& exp);
+        static std::ostream& printShape(const Evaluator<T>::Shape s, std::ostream&);
     };
     
     template<class T>
@@ -31,6 +33,8 @@ namespace core{
         }
         return s;
     }
+    
+    
 }
 
 #endif	/* EVALUATOR_H */
