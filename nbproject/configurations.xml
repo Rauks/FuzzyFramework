@@ -31,6 +31,8 @@
         <logicalFolder name="f6" displayName="Is" projectFiles="true">
           <itemPath>src/fuzzy/Is.h</itemPath>
           <itemPath>src/fuzzy/IsTrapese.h</itemPath>
+          <itemPath>src/fuzzy/IsTrapeseLeft.h</itemPath>
+          <itemPath>src/fuzzy/IsTrapeseRight.h</itemPath>
           <itemPath>src/fuzzy/IsTriangle.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f5" displayName="Not" projectFiles="true">
