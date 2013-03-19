@@ -7,6 +7,9 @@
 
 #include <cstdlib>
 
+#include "src/core/Expression.h"
+#include "src/core/ExpressionFactory.h"
+
 #include "src/core/ValueModel.h"
 #include "src/core/BinaryExpressionModel.h"
 #include "src/core/UnaryExpressionModel.h"
@@ -23,11 +26,13 @@ using namespace fuzzy;
  * 
  */
 int main(int argc, char** argv) {
-    ValueModel<float> vm1(1);
-    IsTriangle<float> op2(5, 10, 15);
-    UnaryExpressionModel<float> uem(&vm1, &op2);
+    IsTriangle<float> triangle(5, 10, 15);
     
-    Evaluator<float>::Shape s = Evaluator<float>::evaluate(0, 30, 1, vm1, uem);
+    ExpressionFactory<float> f;
+    Expression<float>* val = f.newValue(5);
+    Expression<float>* exp = f.newUnary(&triangle, val);
+    
+    Evaluator<float>::Shape s = Evaluator<float>::buildShape(0, 30, 1, val, exp);
     std::cout << s;
     
     /*

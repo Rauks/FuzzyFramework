@@ -28,8 +28,8 @@ namespace core{
         ExpressionFactory();
         ExpressionFactory(const ExpressionFactory& o);
         virtual ~ExpressionFactory();
-        Expression<T>* newUnary(Expression<T>* operand = NULL, BinaryExpression<T>* op = NULL);
-        Expression<T>* newBinary(Expression<T>* left = NULL, Expression<T>* right = NULL, BinaryExpression<T>* op = NULL);
+        Expression<T>* newUnary(UnaryExpression<T>* op = NULL, Expression<T>* operand = NULL);
+        Expression<T>* newBinary(BinaryExpression<T>* op = NULL, Expression<T>* left = NULL, Expression<T>* right = NULL);
         Expression<T>* newValue(const T& value);
     protected:
         Expression<T>* hold(Expression<T>* exp);
@@ -58,18 +58,18 @@ namespace core{
     }
     
     template<class T>
-    Expression<T>* ExpressionFactory<T>::newUnary(Expression<T>* operand, BinaryExpression<T>* op){
-        return hold(new UnaryModelExpression(operand, op));
+    Expression<T>* ExpressionFactory<T>::newUnary(UnaryExpression<T>* op, Expression<T>* operand){
+        return hold(new UnaryExpressionModel<T>(operand, op));
     }
     
     template<class T>
-    Expression<T>* ExpressionFactory<T>::newBinary(Expression<T>* left, Expression<T>* right, BinaryExpression<T>* op){
-        return hold(new BinaryModelExpression(left, right, op));
+    Expression<T>* ExpressionFactory<T>::newBinary(BinaryExpression<T>* op, Expression<T>* left, Expression<T>* right){
+        return hold(new BinaryExpressionModel<T>(left, right, op));
     }
     
     template<class T>
     Expression<T>* ExpressionFactory<T>::newValue(const T& value){
-        return hold(new ValueModel(T));
+        return hold(new ValueModel<T>(value));
     }
 }
 

@@ -22,19 +22,19 @@ namespace core{
         typedef typename std::vector<T>::iterator iterator;
     public:
         typedef typename std::pair<std::vector<T>, std::vector<T> > Shape;
-        static Shape evaluate(const T& min, const T& max, const T& step, ValueModel<T>& var, Expression<T>& exp);
+        static Shape buildShape(const T& min, const T& max, const T& step, Expression<T>* var, Expression<T>* exp);
         static std::ostream& printShape(const Shape s, std::ostream& os);
     protected:
         friend std::ostream& operator<<(std::ostream &os, const Shape& s){ return printShape(s, os); }; //Introvert operator
     };
     
     template<class T>
-    typename Evaluator<T>::Shape Evaluator<T>::evaluate(const T& min, const T& max, const T& step, ValueModel<T>& var, Expression<T>& exp){
+    typename Evaluator<T>::Shape Evaluator<T>::buildShape(const T& min, const T& max, const T& step, ValueModel<T>* var, Expression<T>* exp){
         Shape s;
         for(T i = min; i < max; i += step){
             s.first.push_back(i);
-            var.setValue(i);
-            s.second.push_back(exp.evaluate());
+            var->setValue(i);
+            s.second.push_back(exp->evaluate());
         }
         return s;
     }
