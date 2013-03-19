@@ -24,6 +24,8 @@ namespace core{
         typedef typename std::pair<std::vector<T>, std::vector<T> > Shape;
         static Shape evaluate(const T& min, const T& max, const T& step, ValueModel<T>& var, Expression<T>& exp);
         static std::ostream& printShape(const Shape s, std::ostream& os);
+    protected:
+        friend std::ostream& operator<<(std::ostream &os, const Shape& s){ return printShape(s, os); }; //Introvert operator
     };
     
     template<class T>
@@ -49,7 +51,7 @@ namespace core{
             os << *it << " ";
         }
         return os;
-    }
+    }    
 }
 
 #endif	/* EVALUATOR_H */

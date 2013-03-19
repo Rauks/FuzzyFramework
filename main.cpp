@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
     UnaryExpressionModel<float> uem(&vm1, &op2);
     
     Evaluator<float>::Shape s = Evaluator<float>::evaluate(0, 30, 1, vm1, uem);
-    Evaluator<float>::printShape(s, std::cout);
+    std::cout << s;
     
     /*
     //operators
