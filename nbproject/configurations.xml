@@ -7,11 +7,13 @@
       <logicalFolder name="f1" displayName="core" projectFiles="true">
         <itemPath>src/core/BinaryExpression.h</itemPath>
         <itemPath>src/core/BinaryExpressionModel.h</itemPath>
+        <itemPath>src/core/BinaryShadowExpression.h</itemPath>
         <itemPath>src/core/Evaluator.h</itemPath>
         <itemPath>src/core/Expression.h</itemPath>
         <itemPath>src/core/NullArgumentException.h</itemPath>
         <itemPath>src/core/UnaryExpression.h</itemPath>
         <itemPath>src/core/UnaryExpressionModel.h</itemPath>
+        <itemPath>src/core/UnaryShadowExpression.h</itemPath>
         <itemPath>src/core/ValueModel.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="fuzzy" projectFiles="true">
