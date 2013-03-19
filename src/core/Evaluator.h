@@ -40,7 +40,7 @@ namespace core{
     }
     
     template<class T>
-    std::ostream& Evaluator<T>::printShape(const Evaluator<T>::Shape s, std::ostream& os){
+    std::ostream& Evaluator<T>::printShape(const Shape s, std::ostream& os){
         os << std::endl << "Shape : ";
         os << std::endl << "X : ";
         for(const_iterator it = s.first.begin(); it != s.first.end(); it++){
