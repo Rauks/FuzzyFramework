@@ -27,6 +27,22 @@ namespace core{
     protected:
         Expression<T>* hold(Expression<T>* exp);
     };
+    
+    template<class T>
+    ExpressionFactory<T>::ExpressionFactory(){
+    }
+    
+    template<class T>
+    ExpressionFactory<T>::ExpressionFactory(const ExpressionFactory& o)
+    :_memory(o._memory){
+    }
+    
+    template<class T>
+    ExpressionFactory<T>::~ExpressionFactory(){
+        for(iterator it = _memory.begin(); it != _memory.end(); it++){
+            delete *it;
+        }
+    }
 }
 
 #endif	/* EXPRESSIONFACTORY_H */
