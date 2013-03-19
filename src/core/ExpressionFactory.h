@@ -8,6 +8,13 @@
 #ifndef EXPRESSIONFACTORY_H
 #define	EXPRESSIONFACTORY_H
 
+#include "Expression.h"
+#include "UnaryExpression.h"
+#include "UnaryExpressionModel.h"
+#include "BinaryExpression.h"
+#include "BinaryExpressionModel.h"
+#include "ValueModel.h"
+
 #include <vector>
 
 namespace core{
@@ -42,6 +49,27 @@ namespace core{
         for(iterator it = _memory.begin(); it != _memory.end(); it++){
             delete *it;
         }
+    }
+    
+    template<class T>
+    Expression<T>* ExpressionFactory<T>::hold(Expression<T>* exp){
+        _memory.push_back(exp);
+        return exp;
+    }
+    
+    template<class T>
+    Expression<T>* ExpressionFactory<T>::newUnary(Expression<T>* operand, BinaryExpression<T>* op){
+        return hold(new UnaryModelExpression(operand, op));
+    }
+    
+    template<class T>
+    Expression<T>* ExpressionFactory<T>::newBinary(Expression<T>* left, Expression<T>* right, BinaryExpression<T>* op){
+        return hold(new BinaryModelExpression(left, right, op));
+    }
+    
+    template<class T>
+    Expression<T>* ExpressionFactory<T>::newValue(const T& value){
+        return hold(new ValueModel(T));
     }
 }
 
