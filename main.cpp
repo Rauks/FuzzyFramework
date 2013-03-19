@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
     IsTriangle<float> triangle(5, 10, 15);
     
     ExpressionFactory<float> f;
-    Expression<float>* val = f.newValue(5);
+    ValueModel<float>* val = f.newValue(5);
     Expression<float>* exp = f.newUnary(&triangle, val);
     
     Evaluator<float>::Shape s = Evaluator<float>::buildShape(0, 30, 1, val, exp);

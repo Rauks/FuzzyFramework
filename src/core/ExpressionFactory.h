@@ -28,11 +28,11 @@ namespace core{
         ExpressionFactory();
         ExpressionFactory(const ExpressionFactory& o);
         virtual ~ExpressionFactory();
-        Expression<T>* newUnary(UnaryExpression<T>* op = NULL, Expression<T>* operand = NULL);
-        Expression<T>* newBinary(BinaryExpression<T>* op = NULL, Expression<T>* left = NULL, Expression<T>* right = NULL);
-        Expression<T>* newValue(const T& value);
+        UnaryExpressionModel<T>* newUnary(UnaryExpression<T>* op = NULL, Expression<T>* operand = NULL);
+        BinaryExpressionModel<T>* newBinary(BinaryExpression<T>* op = NULL, Expression<T>* left = NULL, Expression<T>* right = NULL);
+        ValueModel<T>* newValue(const T& value);
     protected:
-        Expression<T>* hold(Expression<T>* exp);
+        void hold(Expression<T>* exp);
     };
     
     template<class T>
@@ -52,24 +52,29 @@ namespace core{
     }
     
     template<class T>
-    Expression<T>* ExpressionFactory<T>::hold(Expression<T>* exp){
+    void ExpressionFactory<T>::hold(Expression<T>* exp){
         _memory.push_back(exp);
+    }
+    
+    template<class T>
+    UnaryExpressionModel<T>* ExpressionFactory<T>::newUnary(UnaryExpression<T>* op, Expression<T>* operand){
+        UnaryExpressionModel<T>* exp = new UnaryExpressionModel<T>(operand, op);
+        hold(exp);
         return exp;
     }
     
     template<class T>
-    Expression<T>* ExpressionFactory<T>::newUnary(UnaryExpression<T>* op, Expression<T>* operand){
-        return hold(new UnaryExpressionModel<T>(operand, op));
+    BinaryExpressionModel<T>* ExpressionFactory<T>::newBinary(BinaryExpression<T>* op, Expression<T>* left, Expression<T>* right){
+        BinaryExpressionModel<T>* exp = new BinaryExpressionModel<T>(left, right, op);
+        hold(exp);
+        return exp;
     }
     
     template<class T>
-    Expression<T>* ExpressionFactory<T>::newBinary(BinaryExpression<T>* op, Expression<T>* left, Expression<T>* right){
-        return hold(new BinaryExpressionModel<T>(left, right, op));
-    }
-    
-    template<class T>
-    Expression<T>* ExpressionFactory<T>::newValue(const T& value){
-        return hold(new ValueModel<T>(value));
+    ValueModel<T>* ExpressionFactory<T>::newValue(const T& value){
+        ValueModel<T>* exp = new ValueModel<T>(value);
+        hold(exp);
+        return exp;
     }
 }
 

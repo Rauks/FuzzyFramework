@@ -22,7 +22,7 @@ namespace core{
         typedef typename std::vector<T>::iterator iterator;
     public:
         typedef typename std::pair<std::vector<T>, std::vector<T> > Shape;
-        static Shape buildShape(const T& min, const T& max, const T& step, Expression<T>* var, Expression<T>* exp);
+        static Shape buildShape(const T& min, const T& max, const T& step, ValueModel<T>* var, Expression<T>* exp);
         static std::ostream& printShape(const Shape s, std::ostream& os);
     protected:
         friend std::ostream& operator<<(std::ostream &os, const Shape& s){ return printShape(s, os); }; //Introvert operator
