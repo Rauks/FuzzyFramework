@@ -13,6 +13,8 @@
 #include "UnaryExpressionModel.h"
 #include "BinaryExpression.h"
 #include "BinaryExpressionModel.h"
+#include "NaryExpression.h"
+#include "NaryExpressionModel.h"
 #include "ValueModel.h"
 
 #include <vector>
@@ -30,6 +32,7 @@ namespace core{
         virtual ~ExpressionFactory();
         UnaryExpressionModel<T>* newUnary(UnaryExpression<T>* op = NULL, Expression<T>* operand = NULL);
         BinaryExpressionModel<T>* newBinary(BinaryExpression<T>* op = NULL, Expression<T>* left = NULL, Expression<T>* right = NULL);
+        NaryExpressionModel<T>* newNary(NaryExpression<T>* op = NULL, std::vector<Expression<T>*>* operands = NULL);
         ValueModel<T>* newValue(const T& value);
     protected:
         void hold(Expression<T>* exp);
@@ -66,6 +69,13 @@ namespace core{
     template<class T>
     BinaryExpressionModel<T>* ExpressionFactory<T>::newBinary(BinaryExpression<T>* op, Expression<T>* left, Expression<T>* right){
         BinaryExpressionModel<T>* exp = new BinaryExpressionModel<T>(left, right, op);
+        hold(exp);
+        return exp;
+    }
+    
+    template<class T>
+    NaryExpressionModel<T>* ExpressionFactory<T>::newNary(NaryExpression<T>* op, std::vector<Expression<T>*>* operands){
+        NaryExpressionModel<T>* exp = new NaryExpressionModel<T>(operands, op);
         hold(exp);
         return exp;
     }

@@ -40,23 +40,23 @@ namespace fuzzy{
     }
     
     template<class T>
-    SugenoDefuzzConclusion<T>::SugenoDefuzzConclusion(){
+    SugenoDefuzzConclusion<T>::~SugenoDefuzzConclusion(){
     }
     
     /**
-     * @param premises Vector of Sugeno premises.
-     * @return Sum of the Sugeno premises and conclusion coefiscients
+     * @param values Vector of inputs Sugeno values.
+     * @return Sum of the Sugeno values and conclusion coefiscients
      */
     template<class T>
-    T SugenoDefuzzConclusion<T>::evaluate(std::vector<core::Expression<T>*>* premises) const{
+    T SugenoDefuzzConclusion<T>::evaluate(std::vector<core::Expression<T>*>* values) const{
         const_iterator coeffIt = _coeff->begin();
-        const_iterator opIt = premises->begin();
+        const_iterator valuesIt = values->begin();
         
         T result = 0;
-        while(coeffIt != _coeff->end() && opIt != premises->end()){
-            result += (*coeffIt) * (*opIt)->evaluate();
+        while(coeffIt != _coeff->end() && valuesIt != values->end()){
+            result += (*coeffIt) * (*valuesIt)->evaluate();
             coeffIt++;
-            opIt++;
+            valuesIt++;
         }
         
         return result;

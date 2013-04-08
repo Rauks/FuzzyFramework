@@ -11,7 +11,10 @@
 #include <vector>
 
 #include "../core/Expression.h"
-#include "../core/NaryExpression.h"
+#include "../core/BinaryExpressionModel.h"
+#include "../core/BinaryShadowExpression.h"
+
+#include "SugenoDefuzzConclusion.h"
 
 namespace fuzzy{
     template<class T>
@@ -19,26 +22,23 @@ namespace fuzzy{
     private:
         typedef typename std::vector<core::Expression<T>*>::const_iterator const_iterator;
         typedef typename std::vector<core::Expression<T>*>::iterator iterator;
-        const SugenoDefuzzConclusion<T>* _conclusion;
     public:
-        SugenoDefuzz(const SugenoDefuzzConclusion<T>* conclusion);
+        SugenoDefuzz();
         SugenoDefuzz(const SugenoDefuzz<T>& o);
         virtual ~SugenoDefuzz();
         virtual T evaluate(std::vector<core::Expression<T>*>* operands) const;
     };
     
     template<class T>
-    SugenoDefuzz<T>::SugenoDefuzz(const SugenoDefuzzConclusion<T>* conclusion)
-    :_conclusion(conclusion){
-    }
-    
-    template<class T>
-    SugenoDefuzz<T>::SugenoDefuzz(const SugenoDefuzz<T>& o)
-    :_conclusion(o._conclusion){
-    }
-    
-    template<class T>
     SugenoDefuzz<T>::SugenoDefuzz(){
+    }
+    
+    template<class T>
+    SugenoDefuzz<T>::SugenoDefuzz(const SugenoDefuzz<T>& o){
+    }
+    
+    template<class T>
+    SugenoDefuzz<T>::~SugenoDefuzz(){
     }
     
     /**
@@ -53,15 +53,15 @@ namespace fuzzy{
         std::vector<core::ValueModel<T>*> premises;
         
         T denum = 0;
+        T num = 0;
         for(const_iterator it = operands->begin(); it != operands->end(); it++){
-            core::BinaryExpressionModel<T>* bem = (core::BinaryExpressionModel<T>*) (*it);
+            core::Expression<T>* operand = (*it);
+            core::BinaryExpressionModel<T>* bem = (core::BinaryExpressionModel<T>*) operand;
             core::BinaryShadowExpression<T>* bse = (core::BinaryShadowExpression<T>*) bem->getOperator();
             T premise = ((ThenSugeno<T>*) bse->getExpression())->premiseValue();
-            premises.push_back(core::ValueModel<T>(premise));
             denum += premise;
+            num += operand->evaluate();
         }
-        
-        T num = _conclusion->evaluate(premises);
         
         if(denum == 0){
             throw std::logic_error("Divided by zero");

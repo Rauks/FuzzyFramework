@@ -31,7 +31,7 @@ namespace core{
     };
     
     template<class T>
-    NaryShadowExpression<T>::NaryShadowExpression(BinaryExpression<T>* exp)
+    NaryShadowExpression<T>::NaryShadowExpression(NaryExpression<T>* exp)
     :_exp(exp){
     }
     
