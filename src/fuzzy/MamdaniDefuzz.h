@@ -23,7 +23,7 @@ namespace fuzzy{
         MamdaniDefuzz(const MamdaniDefuzz<T>& o);
         virtual ~MamdaniDefuzz();
         virtual T evaluate(Expression<T>* left, Expression<T>* right) const;
-        virtual T defuzz(core::Evaluator<T>::Shape) = 0;
+        virtual T defuzz(core::Evaluator<T>::Shape s) const = 0;
     };
     
     template<class T>
