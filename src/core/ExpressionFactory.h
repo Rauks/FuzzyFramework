@@ -30,6 +30,7 @@ namespace core{
         virtual ~ExpressionFactory();
         UnaryExpressionModel<T>* newUnary(UnaryExpression<T>* op = NULL, Expression<T>* operand = NULL);
         BinaryExpressionModel<T>* newBinary(BinaryExpression<T>* op = NULL, Expression<T>* left = NULL, Expression<T>* right = NULL);
+        void ExpressionFactory<T>::hold(Expression<T>* exp);
         ValueModel<T>* newValue(const T& value);
     protected:
         void hold(Expression<T>* exp);
