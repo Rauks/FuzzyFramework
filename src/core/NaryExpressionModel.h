@@ -27,6 +27,7 @@ namespace core{
         virtual ~NaryExpressionModel();
         virtual T evaluate() const;
         virtual T evaluate(std::vector<Expression<T>*>* operands) const;
+        virtual NaryExpression<T>* getOperator() const;
     };
     
     template<class T>
@@ -55,6 +56,11 @@ namespace core{
         if(_op != NULL)
             return _op->evaluate(operands);
         throw NullArgumentException("NaryExpression : Operator");
+    }
+    
+    template<class T>
+    NaryExpression<T>* NaryExpressionModel<T>::getOperator() const{
+        return _op;
     }
 }
 
