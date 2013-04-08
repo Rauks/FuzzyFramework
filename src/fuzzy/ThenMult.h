@@ -34,9 +34,9 @@ namespace fuzzy{
     }
     
     template<class T>
-    T ThenMult<T>::evaluate(core::Expression<T>* left, core::Expression<T>* right) const{
-        T lt = left->evaluate();
-        T rt = right->evaluate();
+    T ThenMult<T>::evaluate(core::Expression<T>* cond, core::Expression<T>* result) const{
+        T lt = cond->evaluate();
+        T rt = result->evaluate();
         return lt * rt;
     }
 }

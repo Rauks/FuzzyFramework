@@ -15,7 +15,7 @@ namespace fuzzy{
     template<class T>
     class Then : public core::BinaryExpression<T>{
     public:
-        virtual T evaluate(core::Expression<T>* left, core::Expression<T>* right) const = 0;
+        virtual T evaluate(core::Expression<T>* cond, core::Expression<T>* result) const = 0;
     };
 }
 
