@@ -8,7 +8,9 @@
 #ifndef UNARYSHADOWEXPRESSION_H
 #define	UNARYSHADOWEXPRESSION_H
 
+#include "Expression.h"
 #include "UnaryExpression.h"
+#include "NullArgumentException.h"
 
 #include <iostream>
 
