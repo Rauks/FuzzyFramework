@@ -34,6 +34,8 @@
         <logicalFolder name="f7" displayName="Defuzz" projectFiles="true">
           <itemPath>src/fuzzy/CogDefuzz.h</itemPath>
           <itemPath>src/fuzzy/MamdaniDefuzz.h</itemPath>
+          <itemPath>src/fuzzy/SugenoDefuzz.h</itemPath>
+          <itemPath>src/fuzzy/SugenoDefuzzConclusion.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f6" displayName="Is" projectFiles="true">
           <itemPath>src/fuzzy/Is.h</itemPath>
@@ -57,6 +59,7 @@
           <itemPath>src/fuzzy/Then.h</itemPath>
           <itemPath>src/fuzzy/ThenMin.h</itemPath>
           <itemPath>src/fuzzy/ThenMult.h</itemPath>
+          <itemPath>src/fuzzy/ThenSugeno.h</itemPath>
         </logicalFolder>
         <itemPath>src/fuzzy/FuzzyFactory.h</itemPath>
       </logicalFolder>
