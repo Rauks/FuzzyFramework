@@ -42,19 +42,26 @@ namespace fuzzy{
     }
     
     /**
-     * @param operands Vector of ThenSugeno based expressions
+     * @param operands Vector of BinaryExpressionModel > BinaryShadowExpression > ThenSugeno based expressions.
+     * ThenSugeno created with FuzzyFactory#newThenSugeno are well formed.
+     * 
      * @return Evaluation
      * @warning All Expression in operands will be casted into ThenSugeno
      */
     template<class T>
     T SugenoDefuzz<T>::evaluate(std::vector<core::Expression<T>*>* operands) const{
-        T num = _conclusion->evaluate(operands);
+        std::vector<core::ValueModel<T>*> premises;
         
         T denum = 0;
         for(const_iterator it = operands->begin(); it != operands->end(); it++){
-            T premise = ((ThenSugeno<T>*) (*opIt))->premiseValue();
+            core::BinaryExpressionModel<T>* bem = (core::BinaryExpressionModel<T>*) (*it);
+            core::BinaryShadowExpression<T>* bse = (core::BinaryShadowExpression<T>*) bem->getOperator();
+            T premise = ((ThenSugeno<T>*) bse->getExpression())->premiseValue();
+            premises.push_back(core::ValueModel<T>(premise));
             denum += premise;
         }
+        
+        T num = _conclusion->evaluate(premises);
         
         if(denum == 0){
             throw std::logic_error("Divided by zero");

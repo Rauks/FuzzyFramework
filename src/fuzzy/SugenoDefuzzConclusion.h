@@ -44,19 +44,17 @@ namespace fuzzy{
     }
     
     /**
-     * @param operands Vector of ThenSugeno based expressions
-     * @return Evaluation
-     * @warning All Expression in operands will be casted into ThenSugeno
+     * @param premises Vector of Sugeno premises.
+     * @return Sum of the Sugeno premises and conclusion coefiscients
      */
     template<class T>
-    T SugenoDefuzzConclusion<T>::evaluate(std::vector<core::Expression<T>*>* operands) const{
+    T SugenoDefuzzConclusion<T>::evaluate(std::vector<core::Expression<T>*>* premises) const{
         const_iterator coeffIt = _coeff->begin();
-        const_iterator opIt = operands->begin();
+        const_iterator opIt = premises->begin();
         
         T result = 0;
-        while(coeffIt != _coeff->end() && opIt != operands->end()){
-            T premise = ((ThenSugeno<T>*) (*opIt))->premiseValue();
-            result += (*coeffIt) * premise;
+        while(coeffIt != _coeff->end() && opIt != premises->end()){
+            result += (*coeffIt) * (*opIt)->evaluate();
             coeffIt++;
             opIt++;
         }
