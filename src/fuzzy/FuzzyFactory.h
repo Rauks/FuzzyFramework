@@ -124,6 +124,11 @@ namespace fuzzy{
     }
     
     template<class T>
+    core::Expression<T>* FuzzyFactory<T>::newDefuzz(core::Expression<T>* left, core::Expression<T>* right){
+        return newBinary(_sDefuzz, left, right);
+    }
+    
+    template<class T>
     void FuzzyFactory<T>::changeAnd(And<T>* opAnd){
         _sAnd.setExpression(opAnd);
     }

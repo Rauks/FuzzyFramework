@@ -38,6 +38,10 @@ namespace fuzzy{
     }
     
     template<class T>
+    CogDefuzz<T>::~CogDefuzz(){
+    }
+    
+    template<class T>
     T CogDefuzz<T>::defuzz(typename core::Evaluator<T>::Shape s) const{
         T num = 0;
         T denum = 0;
@@ -51,6 +55,8 @@ namespace fuzzy{
             second = *its;
             num += first * second;
             denum += second;
+            itf++;
+            its++;
         }
         
         if(denum == 0){
