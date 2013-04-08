@@ -50,23 +50,17 @@ namespace fuzzy{
      */
     template<class T>
     T SugenoDefuzzConclusion<T>::evaluate(std::vector<core::Expression<T>*>* operands) const{
-        T result = 0;
         const_iterator coeffIt = _coeff->begin();
         const_iterator opIt = operands->begin();
         
+        T result = 0;
         while(coeffIt != _coeff->end() && opIt != operands->end()){
             T premise = ((ThenSugeno<T>*) (*opIt))->premiseValue();
             result += (*coeffIt) * premise;
             coeffIt++;
             opIt++;
         }
-        if(opIt != operands->end()){
-            throw std::length_error("Not enougth operands to match coeffs");
-        }
-        if(coeffIt == operands->end()){
-            throw std::length_error("Not enougth coeffs");
-        }
-        result += (*coeffIt);
+        
         return result;
     }
 }
