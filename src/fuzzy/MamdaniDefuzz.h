@@ -10,6 +10,7 @@
 
 #include "../core/BinaryExpression.h"
 #include "../core/Expression.h"
+#include "../core/Evaluator.h"
 
 namespace fuzzy{
     template<class T>

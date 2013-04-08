@@ -10,6 +10,7 @@
 
 #include "MamdaniDefuzz.h"
 #include "../core/Expression.h"
+#include "../core/Evaluator.h"
 
 namespace fuzzy{
     template<class T>
