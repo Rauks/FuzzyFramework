@@ -9,8 +9,10 @@
 #define	SUGENODEFUZZCONCLUSION_H
 
 #include <stdexcept>
-
 #include <vector>
+
+#include "../core/Expression.h"
+#include "../core/NaryExpression.h"
 
 namespace fuzzy{
     template<class T>
