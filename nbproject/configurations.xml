@@ -28,6 +28,10 @@
           <itemPath>src/fuzzy/AndMin.h</itemPath>
           <itemPath>src/fuzzy/AndMult.h</itemPath>
         </logicalFolder>
+        <logicalFolder name="f7" displayName="Defuzz" projectFiles="true">
+          <itemPath>src/fuzzy/CogDefuzz.h</itemPath>
+          <itemPath>src/fuzzy/MamdaniDefuzz.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="f6" displayName="Is" projectFiles="true">
           <itemPath>src/fuzzy/Is.h</itemPath>
           <itemPath>src/fuzzy/IsTrapese.h</itemPath>
