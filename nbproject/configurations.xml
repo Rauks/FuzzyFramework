@@ -53,6 +53,7 @@
           <itemPath>src/fuzzy/ThenMin.h</itemPath>
           <itemPath>src/fuzzy/ThenMult.h</itemPath>
         </logicalFolder>
+        <itemPath>src/fuzzy/FuzzyFactory.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
