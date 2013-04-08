@@ -14,7 +14,7 @@
 
 namespace fuzzy{
     template<class T>
-    class MamdaniDefuzz : core::BinaryExpression<T>{
+    class MamdaniDefuzz : public core::BinaryExpression<T>{
     private:
         T _min;
         T _max;
