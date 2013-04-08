@@ -21,16 +21,18 @@ namespace fuzzy{
     private:
         typedef typename std::vector<core::Expression<T>*>::const_iterator const_iterator;
         typedef typename std::vector<core::Expression<T>*>::iterator iterator;
+        typedef typename std::vector<T>::const_iterator const_coeffs_iterator;
+        typedef typename std::vector<T>::iterator coeffs_iterator;
         const std::vector<T>* _coeff;
     public:
-        SugenoDefuzzConclusion(std::vector<T>* coeff);
+        SugenoDefuzzConclusion(const std::vector<T>* coeff);
         SugenoDefuzzConclusion(const SugenoDefuzzConclusion<T>& o);
         virtual ~SugenoDefuzzConclusion();
         virtual T evaluate(std::vector<core::Expression<T>*>* operands) const;
     };
     
     template<class T>
-    SugenoDefuzzConclusion<T>::SugenoDefuzzConclusion(std::vector<T>* coeff)
+    SugenoDefuzzConclusion<T>::SugenoDefuzzConclusion(const std::vector<T>* coeff)
     :_coeff(coeff){
     }
     
@@ -49,7 +51,7 @@ namespace fuzzy{
      */
     template<class T>
     T SugenoDefuzzConclusion<T>::evaluate(std::vector<core::Expression<T>*>* values) const{
-        const_iterator coeffIt = _coeff->begin();
+        const_coeffs_iterator coeffIt = _coeff->begin();
         const_iterator valuesIt = values->begin();
         
         T result = 0;

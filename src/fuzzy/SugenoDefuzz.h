@@ -50,8 +50,6 @@ namespace fuzzy{
      */
     template<class T>
     T SugenoDefuzz<T>::evaluate(std::vector<core::Expression<T>*>* operands) const{
-        std::vector<core::ValueModel<T>*> premises;
-        
         T denum = 0;
         T num = 0;
         for(const_iterator it = operands->begin(); it != operands->end(); it++){
@@ -66,6 +64,7 @@ namespace fuzzy{
         if(denum == 0){
             throw std::logic_error("Divided by zero");
         }
+        
         return num / denum;
     }
 }
