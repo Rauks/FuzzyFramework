@@ -25,7 +25,7 @@ namespace fuzzy{
     };
     
     template<class T>
-    IsTrapeseLeft<T>::IsTrapeseLeft(const T& min, const T& midMin, const T& midMax, const T& max)
+    IsTrapeseLeft<T>::IsTrapeseLeft(const T& midMax, const T& max)
     :_midMax(midMax), _max(max){
     }
     
