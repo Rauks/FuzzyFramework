@@ -15,7 +15,7 @@ namespace fuzzy{
     template<class T>
     class ThenSugeno : public Then<T>{
     private:
-        T _premise;
+        mutable T _premise;
     public:
         ThenSugeno();
         ThenSugeno(const ThenSugeno<T>& o);
@@ -25,7 +25,8 @@ namespace fuzzy{
     };
     
     template<class T>
-    ThenSugeno<T>::ThenSugeno(){
+    ThenSugeno<T>::ThenSugeno()
+    :_premise(0){
     }
     
     template<class T>

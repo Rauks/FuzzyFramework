@@ -26,6 +26,7 @@ namespace core{
         virtual ~UnaryExpressionModel();
         virtual T evaluate() const;
         virtual T evaluate(Expression<T>* operand) const;
+        virtual UnaryExpression<T>* getOperator() const;
     };
     
     template<class T>
@@ -54,6 +55,11 @@ namespace core{
         if(_op != NULL)
             return _op->evaluate(operand);
         throw NullArgumentException("UnaryExpression : Operator");
+    }
+    
+    template<class T>
+    UnaryExpression<T>* UnaryExpressionModel<T>::getOperator() const{
+        return _op;
     }
 }
 

@@ -21,16 +21,18 @@ namespace fuzzy{
     private:
         typedef typename std::vector<core::Expression<T>*>::const_iterator const_iterator;
         typedef typename std::vector<core::Expression<T>*>::iterator iterator;
+        typedef typename std::vector<T>::const_iterator const_coeffs_iterator;
+        typedef typename std::vector<T>::iterator coeffs_iterator;
         const std::vector<T>* _coeff;
     public:
-        SugenoDefuzzConclusion(std::vector<T>* coeff);
+        SugenoDefuzzConclusion(const std::vector<T>* coeff);
         SugenoDefuzzConclusion(const SugenoDefuzzConclusion<T>& o);
         virtual ~SugenoDefuzzConclusion();
         virtual T evaluate(std::vector<core::Expression<T>*>* operands) const;
     };
     
     template<class T>
-    SugenoDefuzzConclusion<T>::SugenoDefuzzConclusion(std::vector<T>* coeff)
+    SugenoDefuzzConclusion<T>::SugenoDefuzzConclusion(const std::vector<T>* coeff)
     :_coeff(coeff){
     }
     
@@ -40,33 +42,25 @@ namespace fuzzy{
     }
     
     template<class T>
-    SugenoDefuzzConclusion<T>::SugenoDefuzzConclusion(){
+    SugenoDefuzzConclusion<T>::~SugenoDefuzzConclusion(){
     }
     
     /**
-     * @param operands Vector of ThenSugeno based expressions
-     * @return Evaluation
-     * @warning All Expression in operands will be casted into ThenSugeno
+     * @param values Vector of inputs Sugeno values.
+     * @return Sum of the Sugeno values and conclusion coefiscients
      */
     template<class T>
-    T SugenoDefuzzConclusion<T>::evaluate(std::vector<core::Expression<T>*>* operands) const{
-        T result = 0;
-        const_iterator coeffIt = _coeff->begin();
-        const_iterator opIt = operands->begin();
+    T SugenoDefuzzConclusion<T>::evaluate(std::vector<core::Expression<T>*>* values) const{
+        const_coeffs_iterator coeffIt = _coeff->begin();
+        const_iterator valuesIt = values->begin();
         
-        while(coeffIt != _coeff->end() && opIt != operands->end()){
-            T premise = ((ThenSugeno<T>*) (*opIt))->premiseValue();
-            result += (*coeffIt) * premise;
+        T result = 0;
+        while(coeffIt != _coeff->end() && valuesIt != values->end()){
+            result += (*coeffIt) * (*valuesIt)->evaluate();
             coeffIt++;
-            opIt++;
+            valuesIt++;
         }
-        if(opIt != operands->end()){
-            throw std::length_error("Not enougth operands to match coeffs");
-        }
-        if(coeffIt == operands->end()){
-            throw std::length_error("Not enougth coeffs");
-        }
-        result += (*coeffIt);
+        
         return result;
     }
 }

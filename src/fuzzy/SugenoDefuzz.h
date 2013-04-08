@@ -11,7 +11,10 @@
 #include <vector>
 
 #include "../core/Expression.h"
-#include "../core/NaryExpression.h"
+#include "../core/BinaryExpressionModel.h"
+#include "../core/BinaryShadowExpression.h"
+
+#include "SugenoDefuzzConclusion.h"
 
 namespace fuzzy{
     template<class T>
@@ -19,46 +22,49 @@ namespace fuzzy{
     private:
         typedef typename std::vector<core::Expression<T>*>::const_iterator const_iterator;
         typedef typename std::vector<core::Expression<T>*>::iterator iterator;
-        const SugenoDefuzzConclusion<T>* _conclusion;
     public:
-        SugenoDefuzz(const SugenoDefuzzConclusion<T>* conclusion);
+        SugenoDefuzz();
         SugenoDefuzz(const SugenoDefuzz<T>& o);
         virtual ~SugenoDefuzz();
         virtual T evaluate(std::vector<core::Expression<T>*>* operands) const;
     };
     
     template<class T>
-    SugenoDefuzz<T>::SugenoDefuzz(const SugenoDefuzzConclusion<T>* conclusion)
-    :_conclusion(conclusion){
-    }
-    
-    template<class T>
-    SugenoDefuzz<T>::SugenoDefuzz(const SugenoDefuzz<T>& o)
-    :_conclusion(o._conclusion){
-    }
-    
-    template<class T>
     SugenoDefuzz<T>::SugenoDefuzz(){
     }
     
+    template<class T>
+    SugenoDefuzz<T>::SugenoDefuzz(const SugenoDefuzz<T>& o){
+    }
+    
+    template<class T>
+    SugenoDefuzz<T>::~SugenoDefuzz(){
+    }
+    
     /**
-     * @param operands Vector of ThenSugeno based expressions
+     * @param operands Vector of BinaryExpressionModel > BinaryShadowExpression > ThenSugeno based expressions.
+     * ThenSugeno created with FuzzyFactory#newThenSugeno are well formed.
+     * 
      * @return Evaluation
      * @warning All Expression in operands will be casted into ThenSugeno
      */
     template<class T>
     T SugenoDefuzz<T>::evaluate(std::vector<core::Expression<T>*>* operands) const{
-        T num = _conclusion->evaluate(operands);
-        
         T denum = 0;
+        T num = 0;
         for(const_iterator it = operands->begin(); it != operands->end(); it++){
-            T premise = ((ThenSugeno<T>*) (*opIt))->premiseValue();
+            core::Expression<T>* operand = (*it);
+            core::BinaryExpressionModel<T>* bem = (core::BinaryExpressionModel<T>*) operand;
+            core::BinaryShadowExpression<T>* bse = (core::BinaryShadowExpression<T>*) bem->getOperator();
+            T premise = ((ThenSugeno<T>*) bse->getExpression())->premiseValue();
             denum += premise;
+            num += operand->evaluate();
         }
         
         if(denum == 0){
             throw std::logic_error("Divided by zero");
         }
+        
         return num / denum;
     }
 }
