@@ -7,16 +7,19 @@
 
 #include <cstdlib>
 
-#include "src/core/Expression.h"
-#include "src/core/ExpressionFactory.h"
-
-#include "src/core/ValueModel.h"
-#include "src/core/BinaryExpressionModel.h"
-#include "src/core/UnaryExpressionModel.h"
+#include "src/fuzzy/NotMinus1.h"
 #include "src/fuzzy/AndMin.h"
+#include "src/fuzzy/OrMax.h"
+#include "src/fuzzy/ThenMin.h"
+#include "src/fuzzy/AggMax.h"
+#include "src/fuzzy/CogDefuzz.h"
+
+#include "src/fuzzy/FuzzyFactory.h"
+
 #include "src/fuzzy/IsTriangle.h"
 
-#include "src/core/Evaluator.h"
+#include "src/core/Expression.h"
+#include "src/core/ValueModel.h"
 
 using namespace std;
 using namespace core;
@@ -26,6 +29,7 @@ using namespace fuzzy;
  * 
  */
 int main(int argc, char** argv) {
+    /*
     IsTriangle<float> triangle(5, 10, 15);
     
     ExpressionFactory<float> f;
@@ -34,59 +38,60 @@ int main(int argc, char** argv) {
     
     Evaluator<float>::Shape s = Evaluator<float>::buildShape(0, 30, 1, val, exp);
     std::cout << s;
+    */
     
-    /*
     //operators
-    NotMinus1 opNot;
-    AndMin opAnd;
-    OrMax opOr;
-    ThenMin opThen;
-    CogDefuzz opDefuzz;
+    fuzzy::NotMinus1<float> opNot;
+    fuzzy::AndMin<float> opAnd;
+    fuzzy::OrMax<float> opOr;
+    fuzzy::ThenMin<float> opThen;
+    fuzzy::AggMax<float> opAgg;
+    fuzzy::CogDefuzz<float> opDefuzz(0, 25, 1);
     
     //fuzzy expession factory 
-    FuzzyExpressionFactory f(&opNot,&opAnd,&opOr,&opThen,&opOr,&opDefuzz);
+    fuzzy::FuzzyFactory<float> f(&opAnd, &opOr, &opNot, &opThen, &opAgg, &opDefuzz);
     
     //membership function 
-    IsTriangle poor(-5,0,5);
-    IsTriangle good(0,5,10);
-    IsTriangle excellent(5,10,15);
-    IsTriangle cheap(0,5,10);
-    IsTriangle average(10,15,20);
-    IsTriangle generous(20,25,30);
+    fuzzy::IsTriangle<float> poor(-5,0,5);
+    fuzzy::IsTriangle<float> good(0,5,10);
+    fuzzy::IsTriangle<float> excellent(5,10,15);
+    fuzzy::IsTriangle<float> cheap(0,5,10);
+    fuzzy::IsTriangle<float> average(10,15,20);
+    fuzzy::IsTriangle<float> generous(20,25,30);
     
     //values
-    Value service(,0);
-    Value food(0);
-    Value tips(0);
-    Expression *r = 
-        f.NewAgg(
-            f.NewAgg(
-                f.NewThen(
-                    f.NewIs(&service,&poor),
-                    f.NewIs(&tips,&cheap)
+    core::ValueModel<float> service(0);
+    core::ValueModel<float> food(0);
+    core::ValueModel<float> tips(0);
+    core::Expression<float> *r = 
+        f.newAgg(
+            f.newAgg(
+                f.newThen(
+                    f.newIs(&service,&poor),
+                    f.newIs(&tips,&cheap)
                 ),
-                f.NewThen(
-                    f.NewIs(&service,&good),
-                    f.NewIs(&tips,&average)
+                f.newThen(
+                    f.newIs(&service,&good),
+                    f.newIs(&tips,&average)
                 )
             ),
-            f.NewThen(
-                f.NewIs(&service,&excellent),
-                f.NewIs(&tips,&generous)
+            f.newThen(
+                f.newIs(&service,&excellent),
+                f.newIs(&tips,&generous)
             )
     );
     
     //defuzzification
-    core::Expression *system = f.NewDefuzz(&tips, r, 0, 25, 1);
+    core::Expression<float> *system = f.newDefuzz(&tips, r);
     
     //apply input 
     float s;
     while(true){
         cout << "service : ";cin >> s;
-        service.SetValue(s);
+        service.setValue(s);
         cout << "tips -> " << system->evaluate() << endl;
     }
-    */
+    
     
     return 0;
 }

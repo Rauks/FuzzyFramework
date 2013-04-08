@@ -24,7 +24,7 @@ namespace fuzzy{
         CogDefuzz(const T& min, const T& max, const T& step);
         CogDefuzz(const CogDefuzz<T>& o);
         virtual ~CogDefuzz();
-        virtual T defuzz(core::Evaluator<T>::Shape) const = 0;
+        virtual T defuzz(typename core::Evaluator<T>::Shape) const;
     };
     
     template<class T>
@@ -38,9 +38,9 @@ namespace fuzzy{
     }
     
     template<class T>
-    T CogDefuzz<T>::defuzz(core::Evaluator<T>::Shape s) const{
+    T CogDefuzz<T>::defuzz(typename core::Evaluator<T>::Shape s) const{
         T num = 0;
-        T denom = 0;
+        T denum = 0;
         T first;
         T second;
         
@@ -50,10 +50,10 @@ namespace fuzzy{
             first = *itf;
             second = *its;
             num += first * second;
-            denom += second;
+            denum += second;
         }
         
-        if(denom == 0){
+        if(denum == 0){
             throw std::logic_error("Divided by zero");
         }
         return num / denum;

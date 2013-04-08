@@ -16,13 +16,13 @@
 
 namespace core{
     template<class T>
-    class UnaryShadowExpression : UnaryExpression<T>{
+    class UnaryShadowExpression : public UnaryExpression<T>{
     private:
         UnaryExpression<T>* _exp;
     public:
         UnaryShadowExpression(UnaryExpression<T>* exp = NULL);
         UnaryShadowExpression(const UnaryShadowExpression<T>& o);
-        virtual ~UnaryExpressionModel();
+        virtual ~UnaryShadowExpression();
         virtual T evaluate(Expression<T>* operand) const;
         void setExpression(UnaryExpression<T>* exp);
     };
@@ -38,7 +38,7 @@ namespace core{
     }
     
     template<class T>
-    UnaryShadowExpression<T>::~UnaryExpressionModel(){
+    UnaryShadowExpression<T>::~UnaryShadowExpression(){
     }
     
     template<class T>

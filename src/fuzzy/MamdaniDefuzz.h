@@ -23,8 +23,8 @@ namespace fuzzy{
         MamdaniDefuzz(const T& min, const T& max, const T& step);
         MamdaniDefuzz(const MamdaniDefuzz<T>& o);
         virtual ~MamdaniDefuzz();
-        virtual T evaluate(Expression<T>* left, Expression<T>* right) const;
-        virtual T defuzz(core::Evaluator<T>::Shape s) const = 0;
+        virtual T evaluate(core::Expression<T>* left, core::Expression<T>* right) const;
+        virtual T defuzz(typename core::Evaluator<T>::Shape s) const = 0;
     };
     
     template<class T>
@@ -49,8 +49,8 @@ namespace fuzzy{
      * @return a shape builded with left and right evaluation.
      */
     template<class T>
-    T MamdaniDefuzz<T>::evaluate(Expression<T>* left, Expression<T>* right) const{
-        return defuzz(core::Evaluator<T>::buildShape(_min, _max, _step, left, right));
+    T MamdaniDefuzz<T>::evaluate(core::Expression<T>* left, core::Expression<T>* right) const{
+        return defuzz(core::Evaluator<T>::buildShape(_min, _max, _step, (core::ValueModel<T>*) left, right));
     }
 }
 

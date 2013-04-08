@@ -16,7 +16,7 @@
 
 namespace core{
     template<class T>
-    class BinaryShadowExpression : BinaryExpression<T>{
+    class BinaryShadowExpression : public BinaryExpression<T>{
     private:
         BinaryExpression<T>* _exp;
     public:
