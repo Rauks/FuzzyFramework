@@ -8,13 +8,12 @@
 #ifndef BINARYEXPRESSIONMODEL_H
 #define	BINARYEXPRESSIONMODEL_H
 
+#include <iostream>
+
 #include "Expression.h"
 #include "BinaryExpression.h"
 #include "NullArgumentException.h"
 
-#include <iostream>
-
-#include "BinaryExpression.h"
 
 namespace core{
     template<class T>
@@ -49,7 +48,7 @@ namespace core{
     T BinaryExpressionModel<T>::evaluate() const{
         if(_left != NULL && _right != NULL)
             return evaluate(_left, _right);
-        throw NullArgumentException("Expression : Left or Right");
+        throw NullArgumentException("BinaryExpression : Left or Right");
     }
     
     template<class T>

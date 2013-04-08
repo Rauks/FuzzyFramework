@@ -11,6 +11,8 @@
         <itemPath>src/core/Evaluator.h</itemPath>
         <itemPath>src/core/Expression.h</itemPath>
         <itemPath>src/core/ExpressionFactory.h</itemPath>
+        <itemPath>src/core/NaryExpression.h</itemPath>
+        <itemPath>src/core/NaryExpressionModel.h</itemPath>
         <itemPath>src/core/NullArgumentException.h</itemPath>
         <itemPath>src/core/UnaryExpression.h</itemPath>
         <itemPath>src/core/UnaryExpressionModel.h</itemPath>
