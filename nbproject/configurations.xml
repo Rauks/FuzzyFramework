@@ -11,6 +11,8 @@
         <itemPath>src/core/Evaluator.h</itemPath>
         <itemPath>src/core/Expression.h</itemPath>
         <itemPath>src/core/ExpressionFactory.h</itemPath>
+        <itemPath>src/core/NaryExpression.h</itemPath>
+        <itemPath>src/core/NaryExpressionModel.h</itemPath>
         <itemPath>src/core/NullArgumentException.h</itemPath>
         <itemPath>src/core/UnaryExpression.h</itemPath>
         <itemPath>src/core/UnaryExpressionModel.h</itemPath>
@@ -34,6 +36,8 @@
         </logicalFolder>
         <logicalFolder name="f6" displayName="Is" projectFiles="true">
           <itemPath>src/fuzzy/Is.h</itemPath>
+          <itemPath>src/fuzzy/IsBell.h</itemPath>
+          <itemPath>IsGaussian.h</itemPath>
           <itemPath>src/fuzzy/IsTrapese.h</itemPath>
           <itemPath>src/fuzzy/IsTrapeseLeft.h</itemPath>
           <itemPath>src/fuzzy/IsTrapeseRight.h</itemPath>
