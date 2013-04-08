@@ -19,8 +19,6 @@ namespace core{
     template<class T>
     class NaryExpressionModel : public Expression<T>, public NaryExpression<T>{
     private:
-        typedef typename std::vector<T>::const_iterator const_iterator;
-        typedef typename std::vector<T>::iterator iterator;
         std::vector<Expression<T>*>* _operands;
         NaryExpression<T>* _op;
     public:

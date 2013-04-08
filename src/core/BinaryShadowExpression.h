@@ -45,7 +45,7 @@ namespace core{
     T BinaryShadowExpression<T>::evaluate(Expression<T>* left, Expression<T>* right) const{
         if(_exp != NULL)
             return _exp->evaluate(left, right);
-        throw NullArgumentException("Shadow expression : Operand");
+        throw NullArgumentException("BinaryShadowExpression : Expression");
     }
     
     template<class T>
