@@ -8,46 +8,48 @@
 #ifndef BINARYSHADOWEXPRESSION_H
 #define	BINARYSHADOWEXPRESSION_H
 
+#include "Expression.h"
 #include "BinaryExpression.h"
+#include "NullArgumentException.h"
 
 #include <iostream>
 
 namespace core{
     template<class T>
-    class BinaryExpressionExpression : BinaryExpression<T>{
+    class BinaryShadowExpression : BinaryExpression<T>{
     private:
         BinaryExpression<T>* _exp;
     public:
-        BinaryExpressionExpression(BinaryExpression<T>* exp = NULL);
-        BinaryExpressionExpression(const BinaryExpressionExpression<T>& o);
-        virtual ~BinaryExpressionExpression();
+        BinaryShadowExpression(BinaryExpression<T>* exp = NULL);
+        BinaryShadowExpression(const BinaryShadowExpression<T>& o);
+        virtual ~BinaryShadowExpression();
         virtual T evaluate(Expression<T>* left, Expression<T>* right) const;
         void setExpression(BinaryExpression<T>* exp);
     };
     
     template<class T>
-    BinaryExpressionExpression<T>::BinaryExpressionExpression(BinaryExpression<T>* exp)
+    BinaryShadowExpression<T>::BinaryShadowExpression(BinaryExpression<T>* exp)
     :_exp(exp){
     }
     
     template<class T>
-    BinaryExpressionExpression<T>::BinaryExpressionExpression(const BinaryExpressionExpression<T>& o)
+    BinaryShadowExpression<T>::BinaryShadowExpression(const BinaryShadowExpression<T>& o)
     :_exp(o._exp){
     }
     
     template<class T>
-    BinaryExpressionExpression<T>::~BinaryExpressionExpression(){
+    BinaryShadowExpression<T>::~BinaryShadowExpression(){
     }
     
     template<class T>
-    T BinaryExpressionExpression<T>::evaluate(Expression<T>* left, Expression<T>* right) const{
+    T BinaryShadowExpression<T>::evaluate(Expression<T>* left, Expression<T>* right) const{
         if(_exp != NULL)
             return _exp->evaluate(left, right);
         throw NullArgumentException("Shadow expression : Operand");
     }
     
     template<class T>
-    void BinaryExpressionExpression<T>::setExpression(BinaryExpression<T>* exp){
+    void BinaryShadowExpression<T>::setExpression(BinaryExpression<T>* exp){
         _exp = exp;
     }
 }
