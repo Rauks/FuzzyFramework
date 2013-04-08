@@ -13,6 +13,7 @@
 
 #include "../core/Expression.h"
 #include "../core/NaryExpression.h"
+#include "ThenSugeno.h"
 
 namespace fuzzy{
     template<class T>
@@ -25,7 +26,7 @@ namespace fuzzy{
         SugenoDefuzzConclusion(std::vector<T>* coeff);
         SugenoDefuzzConclusion(const SugenoDefuzzConclusion<T>& o);
         virtual ~SugenoDefuzzConclusion();
-        virtual T evaluate(std::vector<core::Expression<T>*>* operands) const = 0;
+        virtual T evaluate(std::vector<core::Expression<T>*>* operands) const;
     };
     
     template<class T>
@@ -42,6 +43,11 @@ namespace fuzzy{
     SugenoDefuzzConclusion<T>::SugenoDefuzzConclusion(){
     }
     
+    /**
+     * @param operands Vector of ThenSugeno based expressions
+     * @return Evaluation
+     * @warning All Expression in operands will be casted into ThenSugeno
+     */
     template<class T>
     T SugenoDefuzzConclusion<T>::evaluate(std::vector<core::Expression<T>*>* operands) const{
         T result = 0;
@@ -49,7 +55,8 @@ namespace fuzzy{
         const_iterator opIt = operands->begin();
         
         while(coeffIt != _coeff->end() && opIt != operands->end()){
-            result += (*coeffIt) * (*opIt)->evaluate();
+            T premise = ((ThenSugeno<T>*) (*opIt))->premiseValue();
+            result += (*coeffIt) * premise;
             coeffIt++;
             opIt++;
         }
