@@ -16,18 +16,28 @@
 #include "Then.h"
 #include "MamdaniDefuzz.h"
 
+#include "AndMult"
+#include "OrPlus"
+#include "ThenMult"
+#include "AggPlus"
+#include "NotMinus"
+#include "CogDefuzz"
+
+#include "../core/Expression.h"
 #include "../core/ExpressionFactory.h"
+#include "../core/BinaryShadowExpression.h"
+#include "../core/UnaryShadowExpression.h"
 
 namespace fuzzy{
     template<class T>
     class FuzzyFactory : public core::ExpressionFactory<T>{
     private:
-        BinaryShadowExpression<T> _sAnd;
-        BinaryShadowExpression<T> _sOr;
-        UnaryShadowExpression<T> _sNot;
-        BinaryShadowExpression<T> _sThen;
-        BinaryShadowExpression<T> _sAgg;
-        BinaryShadowExpression<T> _sDefuzz;
+        core::BinaryShadowExpression<T> _sAnd;
+        core::BinaryShadowExpression<T> _sOr;
+        core::UnaryShadowExpression<T> _sNot;
+        core::BinaryShadowExpression<T> _sThen;
+        core::BinaryShadowExpression<T> _sAgg;
+        core::BinaryShadowExpression<T> _sDefuzz;
         
         static AndMult<T> DEFAULT_AND;
         static OrPlus<T> DEFAULT_OR;
@@ -55,7 +65,7 @@ namespace fuzzy{
         void changeThen(Then<T>* opThen);
         void changeAgg(Agg<T>* opAgg);
         void changeDefuzz(MamdaniDefuzz<T>* opDefuzz);
-        void changeNot(Not<T>* o);
+        void changeNot(Not<T>* opNot);
     };
     
     template<class T>
@@ -100,6 +110,36 @@ namespace fuzzy{
     template<class T>
     Expression<T>* FuzzyFactory<T>::newIs(Is<T>* is, Expression<T>* op){
         return newUnary(is, op);
+    }
+    
+    template<class T>
+    void FuzzyFactory<T>::changeAnd(And<T>* opAnd){
+        _sAnd.setExpression(opAnd);
+    }
+    
+    template<class T>
+    void FuzzyFactory<T>::changeOr(Or<T>* opOr){
+        _sOr.setExpression(opOr);
+    }
+    
+    template<class T>
+    void FuzzyFactory<T>::changeThen(Then<T>* opThen){
+        _sThen.setExpression(opThen);
+    }
+    
+    template<class T>
+    void FuzzyFactory<T>::changeAgg(Agg<T>* opAgg){
+        _sAgg.setExpression(opAgg);
+    }
+    
+    template<class T>
+    void FuzzyFactory<T>::changeDefuzz(MamdaniDefuzz<T>* opDefuzz){
+        _sDefuzz.setExpression(opDefuzz);
+    }
+    
+    template<class T>
+    void FuzzyFactory<T>::changeNot(Not<T>* opNot){
+        _sNot.setExpression(opNot);
     }
 }
 
