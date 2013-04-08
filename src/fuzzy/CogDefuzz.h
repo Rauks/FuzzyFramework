@@ -8,6 +8,8 @@
 #ifndef COGDEFUZZ_H
 #define	COGDEFUZZ_H
 
+#include <stdexcept>
+
 #include "MamdaniDefuzz.h"
 #include "../core/Expression.h"
 #include "../core/Evaluator.h"
@@ -48,11 +50,11 @@ namespace fuzzy{
             first = *itf;
             second = *its;
             num += first * second;
-            denum += second;
+            denom += second;
         }
         
         if(denom == 0){
-            return 0;
+            throw std::logic_error("Divided by zero");
         }
         return num / denum;
     }
