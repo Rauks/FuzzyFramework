@@ -45,7 +45,7 @@ namespace core{
     T UnaryShadowExpression<T>::evaluate(Expression<T>* operand) const{
         if(_exp != NULL)
             return _exp->evaluate(operand);
-        throw NullArgumentException("Shadow expression : Operand");
+        throw NullArgumentException("UnaryShadowExpression : Expression");
     }
     
     template<class T>
