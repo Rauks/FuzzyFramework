@@ -21,6 +21,8 @@
 #include "src/fuzzy/IsTrapese.h"
 #include "src/fuzzy/IsTrapeseLeft.h"
 #include "src/fuzzy/IsTrapeseRight.h"
+#include "src/fuzzy/IsBell.h"
+#include "src/fuzzy/.h"
 
 #include "src/core/Expression.h"
 #include "src/core/ValueModel.h"
@@ -61,12 +63,14 @@ int main(int argc, char** argv) {
         //fuzzy::IsTriangle<float> good(0,5,10);
         //fuzzy::IsTriangle<float> excellent(5,10,15);
         //fuzzy::IsTriangle<float> cheap(0,5,10);
-        fuzzy::IsTriangle<float> average(10,15,20);
-        fuzzy::IsTriangle<float> generous(20,25,30);
+        //fuzzy::IsTriangle<float> average(10,15,20);
+        //fuzzy::IsTriangle<float> generous(20,25,30);
         
         fuzzy::IsTrapese<float> good(0,5,6,11);
         fuzzy::IsTrapeseLeft<float> excellent(5,10);
         fuzzy::IsTrapeseRight<float> cheap(5,10);
+        fuzzy::IsBell<float> average(10,15,20);
+        fuzzy::IsGaussian<float> generous(20,25,30);
 
         //values
         core::ValueModel<float> service(0);
