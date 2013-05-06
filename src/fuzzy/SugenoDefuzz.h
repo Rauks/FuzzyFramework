@@ -62,7 +62,7 @@ namespace fuzzy{
         }
         
         if(denum == 0){
-            throw std::logic_error("Divided by zero");
+            throw std::logic_error("Divided by zero, incomplete fuzzy system.");
         }
         
         return num / denum;
