@@ -155,42 +155,42 @@ namespace fuzzy{
     
     template<class T>
     void FuzzyFactory<T>::changeAnd(And<T>* opAnd){
-        _sAnd.setExpression(opAnd);
+        _sAnd->setExpression(opAnd);
     }
     
     template<class T>
     void FuzzyFactory<T>::changeOr(Or<T>* opOr){
-        _sOr.setExpression(opOr);
+        _sOr->setExpression(opOr);
     }
     
     template<class T>
     void FuzzyFactory<T>::changeThen(Then<T>* opThen){
-        _sThen.setExpression(opThen);
+        _sThen->setExpression(opThen);
     }
     
     template<class T>
     void FuzzyFactory<T>::changeAgg(Agg<T>* opAgg){
-        _sAgg.setExpression(opAgg);
+        _sAgg->setExpression(opAgg);
     }
     
     template<class T>
     void FuzzyFactory<T>::changeMamdani(MamdaniDefuzz<T>* opMamdanu){
-        _sMamdaniDefuzz.setExpression(opMamdanu);
+        _sMamdaniDefuzz->setExpression(opMamdanu);
     }
     
     template<class T>
     void FuzzyFactory<T>::changeSugeno(SugenoDefuzz<T>* opSugeno){
-        _sSugenoDefuzz.setExpression(opSugeno);
+        _sSugenoDefuzz->setExpression(opSugeno);
     }
     
     template<class T>
     void FuzzyFactory<T>::changeConclusion(SugenoDefuzzConclusion<T>* opConclusion){
-        _sSugenoConclusion.setExpression(opConclusion);
+        _sSugenoConclusion->setExpression(opConclusion);
     }
     
     template<class T>
     void FuzzyFactory<T>::changeNot(Not<T>* opNot){
-        _sNot.setExpression(opNot);
+        _sNot->setExpression(opNot);
     }
 }
 
