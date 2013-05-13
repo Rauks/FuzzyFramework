@@ -29,93 +29,6 @@
 #include "src/core/ValueModel.h"
 
 using namespace std;
-
-void sugenoTest(){
-    try{
-        //operators
-        fuzzy::NotMinus1<float> opNot;
-        fuzzy::AndMin<float> opAnd;
-        fuzzy::OrMax<float> opOr;
-        fuzzy::ThenSugeno<float> opThen;
-        fuzzy::AggMax<float> opAgg;
-        fuzzy::CogDefuzz<float> opMamdani = fuzzy::CogDefuzz<float>(0, 25, 1);
-        fuzzy::SugenoDefuzz<float> opSugeno = fuzzy::SugenoDefuzz<float>();
-
-        vector<float> coefs;
-        coefs.push_back(1);
-        coefs.push_back(1);
-        coefs.push_back(1);
-        fuzzy::SugenoDefuzzConclusion<float> opConclusion = fuzzy::SugenoDefuzzConclusion<float>(&coefs);
-
-        //fuzzy expession factory
-        fuzzy::FuzzyFactory<float> f(&opAnd, &opOr, &opNot, &opThen, &opAgg, &opMamdani, &opSugeno, &opConclusion);
-
-        //membership function
-        fuzzy::IsTriangle<float> poor(-5, 0, 5);
-        fuzzy::IsTriangle<float> good(0, 5, 10);
-        fuzzy::IsTriangle<float> excellent(5, 10, 15);
-        fuzzy::IsTriangle<float> rancid(-5, 0, 5);
-        fuzzy::IsTriangle<float> delicious(5, 10, 15);
-
-        //values
-        core::ValueModel<float> service(0);
-        core::ValueModel<float> food(0);
-        core::ValueModel<float> tips(0);
-
-        //sugeno conclusion
-        vector<core::Expression<float>*> sugenoConcServiceFood;
-        sugenoConcServiceFood.push_back(&service);
-        sugenoConcServiceFood.push_back(&food);
-
-        vector<core::Expression<float>*> sugenoConcService;
-        sugenoConcService.push_back(&service);
-
-        vector<core::Expression<float>*> r;
-        r.push_back(
-            f.newThen(
-                f.newOr(
-                    f.newIs(&service,&poor),
-                    f.newIs(&food,&rancid)
-                ),
-                f.newConclusion(&sugenoConcServiceFood)
-            )
-        );
-        r.push_back(
-            f.newThen(
-                f.newIs(&service,&good),
-                f.newConclusion(&sugenoConcService)
-            )
-        );
-        r.push_back(
-            f.newThen(
-                f.newOr(
-                    f.newIs(&service,&excellent),
-                    f.newIs(&food,&delicious)
-                ),
-                f.newConclusion(&sugenoConcServiceFood)
-            )
-        );
-
-        //defuzzification
-        core::Expression<float> *system = f.newSugeno(&r);
-
-        //apply input
-        float s;
-        while(true)
-        {
-                cout << "service : ";
-                cin >> s;
-                service.setValue(s);
-                cout << "food : ";
-                cin >> s;
-                food.setValue(s);
-                cout << "tips -> " << system->evaluate() << endl;
-        }
-    } catch(const std::exception& ex){
-        cout << ex.what();
-    }
-}
-
 /*
  * 
  */
@@ -133,10 +46,10 @@ int main(int argc, char** argv) {
             fuzzy::CogDefuzz<float> opDefuzz(0, 25, 0.1);
             //sugeno
             fuzzy::SugenoDefuzz<float> opSugeno;
+            fuzzy::ThenSugeno<float> opThenSugeno;
             vector<float> coefs;
-            coefs.push_back(1);
-            coefs.push_back(1);
-            coefs.push_back(1);
+            coefs.push_back(2);
+            coefs.push_back(2);
             fuzzy::SugenoDefuzzConclusion<float> opConclusion = fuzzy::SugenoDefuzzConclusion<float>(&coefs);
         //unused operators (for factory init only)
         fuzzy::NotMinus1<float> opNot;
@@ -194,8 +107,52 @@ int main(int argc, char** argv) {
         service.setValue(3);
         food.setValue(8);
         
-        //Print result
-        cout << "Mamdani tip result : " << endl << system->evaluate();
+        //Print mamdani result
+        cout << "Mamdani tip result : " << endl << system->evaluate() << endl;
+        
+        //Change then for sugeno
+        f.changeThen(&opThenSugeno);
+        
+        //Sugeno conclusions
+        vector<core::Expression<float>*> sugenoConcServiceFood;
+        sugenoConcServiceFood.push_back(&service);
+        sugenoConcServiceFood.push_back(&food);
+
+        vector<core::Expression<float>*> sugenoConcService;
+        sugenoConcService.push_back(&service);
+        
+        //Sugeno system (use nary)
+        vector<core::Expression<float>*> sRules;
+        sRules.push_back(
+            f.newThen(
+                f.newOr(
+                    f.newIs(&service,&poor),
+                    f.newIs(&food,&rancid)
+                ),
+                f.newConclusion(&sugenoConcServiceFood)
+            )
+        );
+        sRules.push_back(
+            f.newThen(
+                f.newIs(&service,&good),
+                f.newConclusion(&sugenoConcService)
+            )
+        );
+        sRules.push_back(
+            f.newThen(
+                f.newOr(
+                    f.newIs(&service,&excellent),
+                    f.newIs(&food,&delicious)
+                ),
+                f.newConclusion(&sugenoConcServiceFood)
+            )
+        );
+        
+        //Sugeno system defuzzification
+        core::Expression<float> *systemSugeno = f.newSugeno(&sRules);
+        
+        //Print sugeno result
+        cout << "Sugeno tip result : " << endl << systemSugeno->evaluate();
         
     } catch(const std::exception& ex){
         cout << ex.what();
