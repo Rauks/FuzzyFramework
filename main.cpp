@@ -48,8 +48,8 @@ int main(int argc, char** argv) {
             fuzzy::SugenoDefuzz<float> opSugeno;
             fuzzy::ThenSugeno<float> opThenSugeno;
             vector<float> coefs;
-            coefs.push_back(2);
-            coefs.push_back(2);
+            coefs.push_back(1.6);
+            coefs.push_back(2.1);
             fuzzy::SugenoDefuzzConclusion<float> opConclusion = fuzzy::SugenoDefuzzConclusion<float>(&coefs);
         //unused operators (for factory init only)
         fuzzy::NotMinus1<float> opNot;
