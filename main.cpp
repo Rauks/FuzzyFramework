@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
         fuzzy::ThenMin<float> opThen;
         fuzzy::AggMax<float> opAgg;
             //mamdani
-            fuzzy::CogDefuzz<float> opDefuzz(0, 25, 0.1);
+            fuzzy::CogDefuzz<float> opDefuzz(0, 26, 0.1);
             //sugeno
             fuzzy::SugenoDefuzz<float> opSugeno;
             fuzzy::ThenSugeno<float> opThenSugeno;
