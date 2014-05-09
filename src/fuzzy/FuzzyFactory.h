@@ -74,7 +74,7 @@ namespace fuzzy{
     template<class T>
     FuzzyFactory<T>::FuzzyFactory(And<T>* opAnd, Or<T>* opOr, Not<T>* opNot, Then<T>* opThen, Agg<T>* opAgg, MamdaniDefuzz<T>* opMamdaniDefuzz, SugenoDefuzz<T>* opSugenoDefuzz, SugenoDefuzzConclusion<T>* opSugenoConclusion){
         _sAnd = new core::BinaryShadowExpression<T>(opAnd);
-        _sOr = new core::BinaryShadowExpression<T>(opAnd);
+        _sOr = new core::BinaryShadowExpression<T>(opOr);
         _sNot = new core::UnaryShadowExpression<T>(opNot);
         _sThen = new core::BinaryShadowExpression<T>(opThen);
         _sAgg = new core::BinaryShadowExpression<T>(opAgg);
@@ -86,7 +86,7 @@ namespace fuzzy{
     template<class T>
     FuzzyFactory<T>::FuzzyFactory(const FuzzyFactory<T>& o){
         _sAnd = new core::BinaryShadowExpression<T>(o._sAnd);
-        _sOr = new core::BinaryShadowExpression<T>(o._sAnd);
+        _sOr = new core::BinaryShadowExpression<T>(o._sOr);
         _sNot = new core::UnaryShadowExpression<T>(o._sNot);
         _sThen = new core::BinaryShadowExpression<T>(o._sThen);
         _sAgg = new core::BinaryShadowExpression<T>(o._sAgg);
